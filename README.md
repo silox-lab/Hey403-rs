@@ -35,14 +35,13 @@
 - **CLI Framework:** [clap](https://github.com/clap-rs/clap) (planned)
 - **GUI Framework:** [egui](https://github.com/emilk/egui) / [tauri](https://tauri.app) / [iced](https://iced.rs) (evaluating)
 - **Async Runtime:** [tokio](https://tokio.rs) (planned)
-- **DNS Resolution:** [trust-dns-resolver](https://github.com/bluejekyll/trust-dns) (planned)
 
 ---
 
 ## 🚀 Roadmap
 
 - [x] Project scaffolding
-- [ ] Core DNS resolution engine
+- [x] Core DNS resolution engine
 - [ ] Parallel DNS testing
 - [ ] CLI interface
 - [ ] GUI prototype

@@ -1,0 +1,8 @@
+[package]
+name = "hey403-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+http = "1.4.2"
+url = "2.5.8"
