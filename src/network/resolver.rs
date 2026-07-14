@@ -1,9 +1,9 @@
-use url::Url;
-
+use rand::random;
 use std::{
     net::{Ipv4Addr, UdpSocket},
     time::Duration,
 };
+use url::Url;
 
 fn dns_resolver(host: &str, dns: &str) -> Result<Vec<Ipv4Addr>, String> {
     let socket =
@@ -17,7 +17,7 @@ fn dns_resolver(host: &str, dns: &str) -> Result<Vec<Ipv4Addr>, String> {
 
     let mut packet = Vec::with_capacity(512);
 
-    let txid = 0x1337u16;
+    let txid: u16 = random();
 
     packet.extend_from_slice(&txid.to_be_bytes());
     packet.extend_from_slice(&0x0100u16.to_be_bytes());
@@ -99,7 +99,7 @@ fn dns_resolver(host: &str, dns: &str) -> Result<Vec<Ipv4Addr>, String> {
     Ok(ips)
 }
 
-pub fn resolve_url(url: String, dns: &String) -> Result<Ipv4Addr, String> {
+pub fn resolve_url(url: String, dns: &str) -> Result<Ipv4Addr, String> {
     let mut hostname = String::new();
     let parsed_url = Url::parse(&url).map_err(|_| String::from("error in parsing url"))?;
 
@@ -108,5 +108,8 @@ pub fn resolve_url(url: String, dns: &String) -> Result<Ipv4Addr, String> {
     }
 
     let resolved_url = dns_resolver(&hostname, dns)?;
+    if resolved_url.is_empty() {
+        return Err(String::from("No resolved IP found"));
+    }
     Ok(resolved_url[0])
 }

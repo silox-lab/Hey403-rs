@@ -5,4 +5,5 @@ edition = "2024"
 
 [dependencies]
 http = "1.4.2"
+rand = "0.10.2"
 url = "2.5.8"
